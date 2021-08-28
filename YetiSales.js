@@ -1,7 +1,6 @@
 require('dotenv').config();
 const { Client, Intents } = require('discord.js');
 var ethers = require('ethers');
-const sdk = require('api')('@opensea/v1.0#10ly3a2fkr6dkwq4');
 
 // Create a new client instance
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
@@ -15,22 +14,18 @@ main = () => {
 	console.log('Ready2!');
   const seconds = process.env.SECONDS ? parseInt(process.env.SECONDS) : 3600;
   const hoursAgo = (Math.round(new Date().getTime() / 1000) - (seconds)); // in the last hour, run hourly?
-  sdk['retrieving-asset-events']({
-  asset_contract_address: '0x3f0785095a660fee131eebcd5aa243e529c21786',
-  collection_slug: 'superyeti',
-  event_type: 'successful',
-  only_opensea: 'false',
-  offset: '0',	 
-  limit: '20'
-})
-  .then(res => {
-  	console.log(res)
-res.asset_events.reverse().map(async (sale) => {
-	const message = buildMessage(sale);
-      return channel.send(message)
-})
+const params = new URLSearchParams({
+    offset: '0',
+    event_type: 'successful',
+    only_opensea: 'false',
+    occurred_after: hoursAgo.toString(), 
+    collection_slug: process.env.COLLECTION_SLUG!,
   })
-  .catch(err => console.error(err)); 
+
+    params.append('asset_contract_address', process.env.CONTRACT_ADDRESS!)
+const openSeaResponse = await fetch(
+    "https://api.opensea.io/api/v1/events?" + params).then((resp) => resp.json());
+	console.log(openSeaResponse);
    
 }
 const buildMessage = (sale) => (
