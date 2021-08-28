@@ -10,6 +10,9 @@ const client = new Discord.Client();
 client.on('ready', () => {
 	console.log('Ready!');
 	channel = client.channels.fetch(process.env.DISCORD_CHANNEL_ID);
+	client.channels.fetch(process.env.DISCORD_CHANNEL_ID).then((c) => {
+        channel = c;
+    });
 });
  main = async (channel) => {
 	console.log('Ready2!');
