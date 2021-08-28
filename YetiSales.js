@@ -11,7 +11,7 @@ client.on('ready', async () => {
 	console.log('Ready!');
 	channel = client.channels.fetch(process.env.DISCORD_CHANNEL_ID);
 });
- main = async () => {
+ main = async (channel) => {
 	console.log('Ready2!');
   const seconds = process.env.SECONDS ? parseInt(process.env.SECONDS) : 3600;
   const hoursAgo = (Math.round(new Date().getTime() / 1000) - (seconds)); // in the last hour, run hourly?
@@ -52,7 +52,8 @@ const buildMessage = (sale) => (
 );
 // Login to Discord with your client's token
 setInterval(function(){
-    main();
+	channel.send('helloo');
+    main(channel);
 },6 * 1000)
 
 client.login(process.env.DISCORD_BOT_TOKEN);
