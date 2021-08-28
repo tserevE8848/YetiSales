@@ -19,10 +19,10 @@ const params = new URLSearchParams({
     event_type: 'successful',
     only_opensea: 'false',
     occurred_after: hoursAgo.toString(), 
-    collection_slug: process.env.COLLECTION_SLUG!,
+    collection_slug: process.env.COLLECTION_SLUG,
   })
 
-    params.append('asset_contract_address', process.env.CONTRACT_ADDRESS!)
+    params.append('asset_contract_address', process.env.CONTRACT_ADDRESS)
 const openSeaResponse = await fetch(
     "https://api.opensea.io/api/v1/events?" + params).then((resp) => resp.json());
 	console.log(openSeaResponse);
