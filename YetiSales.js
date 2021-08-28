@@ -1,6 +1,6 @@
 require('dotenv').config();
 const fetch = require('node-fetch');
-const { Client, Intents } = require('discord.js');
+const { Discord, Client, Intents } = require('discord.js');
 var ethers = require('ethers');
 
 // Create a new client instance
@@ -35,7 +35,7 @@ const openSeaResponse = await fetch(
 );
 }
 const buildMessage = (sale) => (
-  new Client.MessageEmbed()
+  new Discord.MessageEmbed()
 	.setColor('#0099ff')
 	.setTitle(sale.asset.name + ' sold!')
 	.setURL(sale.asset.permalink)
