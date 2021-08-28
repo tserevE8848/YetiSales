@@ -24,7 +24,7 @@ const params = new URLSearchParams({
   })
 
     params.append('asset_contract_address', process.env.CONTRACT_ADDRESS)
-const openSeaResponse = fetch(
+const openSeaResponse = await fetch(
     "https://api.opensea.io/api/v1/events?" + params).then((resp) => resp.json());
 	console.log(openSeaResponse);
    return Promise.all(
