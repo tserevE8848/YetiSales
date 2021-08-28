@@ -10,7 +10,7 @@ client.once('ready', () => {
 	console.log('Ready!');
 	channel = client.channels.fetch(process.env.DISCORD_CHANNEL_ID);
 });
-async main = () => {
+ main =async () => {
 	console.log('Ready2!');
   const seconds = process.env.SECONDS ? parseInt(process.env.SECONDS) : 3600;
   const hoursAgo = (Math.round(new Date().getTime() / 1000) - (seconds)); // in the last hour, run hourly?
