@@ -27,7 +27,11 @@ const params = new URLSearchParams({
 const openSeaResponse = await fetch(
     "https://api.opensea.io/api/v1/events?" + params).then((resp) => resp.json());
 	console.log(openSeaResponse);
-   
+   return await Promise.all(
+    openSeaResponse.asset_events.reverse().map(async (sale) => {
+      const message = buildMessage(sale);
+      return channel.send(message)
+    })
 }
 const buildMessage = (sale) => (
   new Discord.MessageEmbed()
