@@ -2,7 +2,7 @@ require('dotenv').config();
 const fetch = require('node-fetch');
 const Discord = require('discord.js');
 var ethers = require('ethers');
-
+let channel ='';
 // Create a new client instance
 const client = new Discord.Client();
 
