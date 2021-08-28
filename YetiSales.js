@@ -35,7 +35,7 @@ const openSeaResponse = await fetch(
 );
 }
 const buildMessage = (sale) => (
-  new Discord.MessageEmbed()
+  new Client.MessageEmbed()
 	.setColor('#0099ff')
 	.setTitle(sale.asset.name + ' sold!')
 	.setURL(sale.asset.permalink)
