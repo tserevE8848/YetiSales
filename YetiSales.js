@@ -53,5 +53,8 @@ const buildMessage = (sale) => (
 );
 
 // Login to Discord with your client's token
-main(channel);
+setInterval(function(){
+    main(channel);
+},10 * 1000)
+
 client.login(process.env.DISCORD_BOT_TOKEN);
