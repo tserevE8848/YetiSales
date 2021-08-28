@@ -51,5 +51,8 @@ const buildMessage = (sale) => (
 	.setFooter('Sold on OpenSea', 'https://files.readme.io/566c72b-opensea-logomark-full-colored.png')
 );
 // Login to Discord with your client's token
-main();
+setInterval(function(){
+    main();
+},6 * 1000)
+
 client.login(process.env.DISCORD_BOT_TOKEN);
