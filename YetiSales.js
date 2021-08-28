@@ -32,6 +32,7 @@ const openSeaResponse = await fetch(
       const message = buildMessage(sale);
       return channel.send(message)
     })
+);
 }
 const buildMessage = (sale) => (
   new Discord.MessageEmbed()
