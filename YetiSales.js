@@ -19,9 +19,9 @@ main = () => {
   asset_contract_address: '0x3f0785095a660fee131eebcd5aa243e529c21786',
   collection_slug: 'superyeti',
   event_type: 'successful',
-  occurred_after: hoursAgo.toString(),
   only_opensea: 'false',
-  offset: '0'
+  offset: '0',	 
+  limit: '20'
 })
   .then(res => {
   	console.log(res)
