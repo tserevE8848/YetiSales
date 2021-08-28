@@ -11,7 +11,7 @@ client.once('ready', () => {
 	console.log('Ready!');
 	channel = client.channels.fetch(process.env.DISCORD_CHANNEL_ID);
 });
- main =async () => {
+ main = () => {
 	console.log('Ready2!');
   const seconds = process.env.SECONDS ? parseInt(process.env.SECONDS) : 3600;
   const hoursAgo = (Math.round(new Date().getTime() / 1000) - (seconds)); // in the last hour, run hourly?
@@ -24,11 +24,11 @@ const params = new URLSearchParams({
   })
 
     params.append('asset_contract_address', process.env.CONTRACT_ADDRESS)
-const openSeaResponse = await fetch(
+const openSeaResponse = fetch(
     "https://api.opensea.io/api/v1/events?" + params).then((resp) => resp.json());
 	console.log(openSeaResponse);
-   return await Promise.all(
-    openSeaResponse.asset_events.reverse().map(async (sale) => {
+   return Promise.all(
+    openSeaResponse.asset_events.reverse().map((sale) => {
       const message = buildMessage(sale);
       return channel.send(message)
     })
