@@ -1,10 +1,10 @@
 require('dotenv').config();
 const fetch = require('node-fetch');
-const { Discord, Client, Intents } = require('discord.js');
+const Discord = require('discord.js');
 var ethers = require('ethers');
 
 // Create a new client instance
-const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
+const client = new Discord.Client();
 
 // When the client is ready, run this code (only once)
 client.once('ready', () => {
