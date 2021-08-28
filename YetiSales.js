@@ -1,5 +1,5 @@
 require('dotenv').config();
-import fetch from 'node-fetch';
+const fetch = require('node-fetch');
 const { Client, Intents } = require('discord.js');
 var ethers = require('ethers');
 
