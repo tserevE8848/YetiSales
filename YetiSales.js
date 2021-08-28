@@ -8,15 +8,13 @@ const client = new Discord.Client();
 
 // When the client is ready, run this code (only once)
 client.on('ready', () => {
-	console.log('Ready!');
 	channel = client.channels.fetch(process.env.DISCORD_CHANNEL_ID);
 	client.channels.fetch(process.env.DISCORD_CHANNEL_ID).then((c) => {
         channel = c;
     });
 });
  main = async (channel) => {
-	console.log('Ready2!');
-  const seconds = process.env.SECONDS ? parseInt(process.env.SECONDS) : 3600;
+  const seconds = process.env.SECONDS ? parseInt(process.env.SECONDS) : 36000;
   const hoursAgo = (Math.round(new Date().getTime() / 1000) - (seconds)); // in the last hour, run hourly?
 const params = new URLSearchParams({
     offset: '0',
@@ -53,10 +51,7 @@ const buildMessage = (sale) => (
 	.setTimestamp(Date.parse(`${sale.created_date}Z`))
 	.setFooter('Sold on OpenSea', 'https://files.readme.io/566c72b-opensea-logomark-full-colored.png')
 );
-// Login to Discord with your client's token
-setInterval(function(){
-	channel.send('helloo');
-    main(channel);
-},6 * 1000)
 
+// Login to Discord with your client's token
+main(channel);
 client.login(process.env.DISCORD_BOT_TOKEN);
