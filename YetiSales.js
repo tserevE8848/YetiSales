@@ -7,7 +7,7 @@ let channel ='';
 const client = new Discord.Client();
 
 // When the client is ready, run this code (only once)
-client.on('ready', async () => {
+client.on('ready', () => {
 	console.log('Ready!');
 	channel = client.channels.fetch(process.env.DISCORD_CHANNEL_ID);
 });
