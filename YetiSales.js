@@ -1,8 +1,8 @@
 require('dotenv').config();
-const Discord = require('discord.js');
+const { Client, Intents } = require('discord.js');
 var ethers = require('ethers');
 const sdk = require('api')('@opensea/v1.0#10ly3a2fkr6dkwq4');
-const discordBot = new Discord.Client();
+const discordBot = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
 let channel = '';
 discordBot.login(process.env.DISCORD_BOT_TOKEN);
  discordBot.on('ready', async () => {
