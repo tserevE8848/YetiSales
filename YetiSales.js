@@ -7,7 +7,7 @@ var ethers = require('ethers');
 const client = new Discord.Client();
 
 // When the client is ready, run this code (only once)
-client.once('ready', () => {
+client.on('ready', async () => {
 	console.log('Ready!');
 	channel = client.channels.fetch(process.env.DISCORD_CHANNEL_ID);
 });
