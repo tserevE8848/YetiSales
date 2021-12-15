@@ -23,10 +23,13 @@ const params = new URLSearchParams({
     occurred_after: hoursAgo.toString(), 
     collection_slug: process.env.COLLECTION_SLUG,
   })
-
+ let openSeaFetch = {}
+  if (process.env.OPENSEA_TOKEN) {
+    openSeaFetch['headers'] = {'X-API-KEY': process.env.OPENSEA_TOKEN}
+  }
     params.append('asset_contract_address', process.env.CONTRACT_ADDRESS)
 const openSeaResponse = await fetch(
-    "https://api.opensea.io/api/v1/events?" + params).then((resp) => resp.json());
+    "https://api.opensea.io/api/v1/events?" + params,openSeaFetch).then((resp) => resp.json());
 	console.log(openSeaResponse);
    return Promise.all(
     openSeaResponse.asset_events.reverse().map((sale) => {
