@@ -14,7 +14,7 @@ client.on('ready', () => {
     });
 });
  main = async (channel) => {
-  const seconds = 3600;
+  const seconds = 36000*4;
   const hoursAgo = (Math.round(new Date().getTime() / 1000) - (seconds)); // in the last hour, run hourly?
 const params = new URLSearchParams({
     offset: '0',
