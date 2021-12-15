@@ -59,6 +59,5 @@ const buildMessage = (sale) => (
 setInterval(function(){
    main(channel); 
 },3600 * 1000)
-main(channel); 
 client.login(process.env.DISCORD_BOT_TOKEN);
 
