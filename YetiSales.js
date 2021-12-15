@@ -14,7 +14,7 @@ client.on('ready', () => {
     });
 });
  main = async (channel) => {
-  const seconds = 36000*4;
+  const seconds = 3600;
   const hoursAgo = (Math.round(new Date().getTime() / 1000) - (seconds)); // in the last hour, run hourly?
 const params = new URLSearchParams({
     offset: '0',
@@ -58,6 +58,6 @@ const buildMessage = (sale) => (
 // Login to Discord with your client's token
 setInterval(function(){
    main(channel); 
-},300 * 1000)
+},3600 * 1000)
 client.login(process.env.DISCORD_BOT_TOKEN);
 
