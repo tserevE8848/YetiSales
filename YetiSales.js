@@ -14,12 +14,13 @@ client.on('ready', () => {
     });
 });
  main = async (channel) => {
-  const seconds = 3600;
-  const hoursAgo = (Math.round(new Date().getTime() / 1000)); // in the last hour, run hourly?
+  const currentTime = (Math.round(new Date().getTime() / 1000)); // in the last hour, run hourly?
+const seconds =66000000;
+  const hoursAgo = (Math.round(new Date().getTime()) - (seconds));
 const params = new URLSearchParams({
     event_type: 'successful',
     only_opensea: 'false',
-    occurred_before: hoursAgo.toString(), 
+    occurred_before: currentTime.toString(), 
     collection_slug: process.env.COLLECTION_SLUG,
   })
  let openSeaFetch = {}
@@ -31,9 +32,12 @@ const openSeaResponse = await fetch(
     "https://api.opensea.io/api/v1/events?" + params,openSeaFetch).then((resp) => resp.json());
 	console.log(openSeaResponse);
    return Promise.all(
-    openSeaResponse.asset_events.reverse().map((sale) => {
+    openSeaResponse.asset_events.reverse().some((sale) => {
+	    let createdDate = Date.parse(`${sale.created_date}Z`)
       const message = buildMessage(sale);
-	   console.log(openSeaResponse); 
+	   console.log(createdDate); 
+	    console.log(hoursAgo)
+	    if (createdDate <  hoursAgo) { return true;}
      // return channel.send(message)
     })
 );
