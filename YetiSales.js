@@ -33,19 +33,16 @@ const openSeaResponse = await fetch(
    return Promise.all(
     openSeaResponse.asset_events.reverse().map((sale) => {
 	    let createdDate = Date.parse(sale.created_date)
-      const message = buildMessage(sale);
+       const message = buildMessage(sale);
+		   return channel.send(message)
 	    if (createdDate <  hoursAgo) {
-		    console.log(sale.asset.name);
-		    console.log('-++++-');
+		  
 	    }
 	    else {
-		    
-		     console.log(sale.asset.name);
-		    console.log('-*****-');
+// 		    const message = buildMessage(sale);
+// 		   return channel.send(message)
 	    }
-	   console.log(createdDate); 
-	    console.log('---')
-	    console.log(hoursAgo)
+	 
 // 	    if (createdDate <  hoursAgo) { return true;}
      // return channel.send(message)
     })
