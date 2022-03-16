@@ -31,7 +31,7 @@ const params = new URLSearchParams({
 const openSeaResponse = await fetch(
     "https://api.opensea.io/api/v1/events?" + params,openSeaFetch).then((resp) => resp.json());
    return Promise.all(
-    openSeaResponse.asset_events.reverse().map((sale) => {
+    openSeaResponse.asset_events.map((sale) => {
 	    let createdDate = Date.parse(sale.created_date)
       const message = buildMessage(sale);
 	   console.log(createdDate); 
