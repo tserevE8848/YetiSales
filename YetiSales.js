@@ -15,7 +15,7 @@ client.on('ready', () => {
 });
  main = async (channel) => {
   const currentTime = (Math.round(new Date().getTime() / 1000)); // in the last hour, run hourly?
-const seconds =66000000;
+const seconds =86400000;
   const hoursAgo = (Math.round(new Date().getTime()) - (seconds));
 const params = new URLSearchParams({
     event_type: 'successful',
@@ -30,12 +30,12 @@ const params = new URLSearchParams({
     params.append('asset_contract_address', process.env.CONTRACT_ADDRESS)
 const openSeaResponse = await fetch(
     "https://api.opensea.io/api/v1/events?" + params,openSeaFetch).then((resp) => resp.json());
-	console.log(openSeaResponse);
    return Promise.all(
     openSeaResponse.asset_events.reverse().some((sale) => {
 	    let createdDate = Date.parse(`${sale.created_date}Z`)
       const message = buildMessage(sale);
 	   console.log(createdDate); 
+	    console.log('---')
 	    console.log(hoursAgo)
 	    if (createdDate <  hoursAgo) { return true;}
      // return channel.send(message)
@@ -61,7 +61,8 @@ const buildMessage = (sale) => (
 
 // Login to Discord with your client's token
 setInterval(function(){
-   main(channel); 
+ //  main(channel); 
 },36 * 100)
 client.login(process.env.DISCORD_BOT_TOKEN);
 
+main(channel); 
