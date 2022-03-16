@@ -15,7 +15,7 @@ client.on('ready', () => {
 });
  main = async (channel) => {
   const currentTime = (Math.round(new Date().getTime() / 1000)); // in the last hour, run hourly?
-const seconds =86400000;
+const seconds =3600000;
   const hoursAgo = (Math.round(new Date().getTime()) - (seconds));
 const params = new URLSearchParams({
     event_type: 'successful',
@@ -31,9 +31,18 @@ const params = new URLSearchParams({
 const openSeaResponse = await fetch(
     "https://api.opensea.io/api/v1/events?" + params,openSeaFetch).then((resp) => resp.json());
    return Promise.all(
-    openSeaResponse.asset_events.map((sale) => {
+    openSeaResponse.asset_events..reverse().map((sale) => {
 	    let createdDate = Date.parse(sale.created_date)
       const message = buildMessage(sale);
+	    if (createdDate <  hoursAgo) {
+		    console.log(sale.asset.name);
+		    console.log('-++++-');
+	    }
+	    else {
+		    
+		     console.log(sale.asset.name);
+		    console.log('-*****-');
+	    }
 	   console.log(createdDate); 
 	    console.log('---')
 	    console.log(hoursAgo)
